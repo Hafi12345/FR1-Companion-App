@@ -19,6 +19,10 @@
     <string name="settings_language_section">زبان</string>
     <string name="settings_ollama_section">اولاما سرور</string>
     <string name="settings_ollama_url_label">سرور ایڈریس (مثال: http://192.168.1.100:11434)</string>
+    <string name="settings_ollama_url_error">ایک درست یو آر ایل درج کریں، مثال: http://192.168.1.100:11434</string>
+    <string name="settings_test_connection_button">رابطہ آزمائیں</string>
+    <string name="settings_test_connection_success">رابطہ ہو گیا — ماڈل: %1$s</string>
+    <string name="settings_test_connection_failure">سرور تک رسائی نہیں ہو سکی</string>
 
     <string name="wound_assessment_disclaimer">یہ مظاہرے کے مقصد کے لیے ایک نقلی جائزہ ہے اور پیشہ ور طبی رائے کا متبادل نہیں ہے۔</string>
     <string name="wound_assessment_progress">سوال %1$d از %2$d</string>

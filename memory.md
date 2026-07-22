@@ -12,9 +12,12 @@
 ---
 
 ## Current Phase
-`Phase 6 — Settings Finalization` *(update this line as phases progress)*
+`Phase 7 — Integration Testing & Bug Fixing` *(update this line as phases progress)*
 
 ## Files Created
+- `ui/settings/SettingsViewModel.kt` (extended) — added `ConnectionTestState` sealed interface (Idle/Testing/Success(modelName)/Failure), `isValidOllamaUrl()` (top-level regex validator: `^https?://[^\s:/]+(:\d+)?/?$`), and `testConnection()` which reuses `OllamaRepository.checkReachableModel()` (same repo Phase 4 built) against whatever URL is currently saved
+- `ui/settings/SettingsScreen.kt` (extended) — the Ollama URL field now shows an inline error (red border + `settings_ollama_url_error`) when the text fails `isValidOllamaUrl()`; a new "Test Connection" button (disabled while invalid or already testing) shows a spinner then an inline colored result (`LiveIndicator` green for success with the detected model name, `colorScheme.error` for failure)
+- `res/values/strings.xml` + `res/values-ur/strings.xml` — EN/UR parity for the new Settings strings
 - `data/local/db/{WoundCaseEntity,WoundCaseDao,FR1Database}.kt` — Room entity flattening `WoundAssessmentAnswers` + `Severity` into primitive columns (no `Map<String,Any>`/TypeConverter, per architecture.md's sketch — Room needs concrete typed columns), a DAO with `insert()` + `observeAll(): Flow<List<WoundCaseEntity>>`, and a singleton `FR1Database` (double-checked-locking `getInstance()`, manual DI per `rules.md` — no Hilt)
 - `data/local/db/WoundCaseRepository.kt` — bridges the domain model (`WoundAssessmentAnswers`, `Severity`) to `WoundCaseEntity` for both the save path (Wound Assessment) and the read path (History)
 - `ui/woundassessment/WoundAssessmentViewModel.kt` (extended) — persists a `WoundCaseEntity` exactly once per completed assessment via `persistIfComplete()`, called *after* `_uiState.update {}` rather than inside its transform lambda (see Notes & Deviations — `StateFlow.update`'s lambda can retry under contention, which would risk a duplicate suspend DB write if it lived there)
@@ -71,7 +74,7 @@
 - [x] Phase 3 — Treatment Guidance Library
 - [x] Phase 4 — Chatbot (Ollama Integration + Fallback)
 - [x] Phase 5 — Emergency Alert & Incident History
-- [ ] Phase 6 — Settings Finalization
+- [x] Phase 6 — Settings Finalization
 - [ ] Phase 7 — Integration Testing & Bug Fixing
 - [ ] Phase 8 — Polish, APK Build, Demo Rehearsal
 
@@ -99,6 +102,8 @@
 - Emergency Alert uses `Intent.ACTION_DIAL` (not `ACTION_CALL`) deliberately — it pre-fills the system dialer with `1122` but requires the user to press the dialer's own Call button. No `CALL_PHONE` permission needed, and it avoids an app silently placing a real call on someone's behalf during a demo. Verified live: `dumpsys activity activities` showed `com.google.android.dialer` become `topResumedActivity` with `1122` pre-filled after tapping the button.
 - Room persistence timing: `persistIfComplete()` in `WoundAssessmentViewModel` is called right after `_uiState.update {}` returns, not from inside the update's transform lambda. `MutableStateFlow.update` retries its lambda on CAS contention, so a suspend DB write inside it could double-insert; a `hasPersistedCase` boolean flag (checked outside the lambda) guarantees exactly one save per completed assessment.
 - Verified in Urdu too: History's severity dot + label and the timestamp both correctly swap sides under RTL (label+dot move to the right, date stays left) with no code branching needed — it falls out of `Row`'s default start/end semantics once `LocalLayoutDirection` is RTL, same mechanism as everywhere else in the app.
+- Settings' "Test Connection" reuses the exact same `OllamaRepository.checkReachableModel()` that the chatbot's reachability ping uses — no separate test-connection code path to keep in sync. Deliberately tests whatever URL is currently saved to DataStore (not just the in-memory text field value), so what gets tested matches what the chatbot will actually use.
+- Manually verified: an invalid URL (missing/garbled scheme) correctly shows the red-bordered field + localized error text and disables "Test Connection"; a valid but unreachable URL enables the button, runs a real network attempt, and correctly resolves to "Could not reach server" with no crash or hang (bounded by the same 2.5s timeout from Phase 4's `OllamaRepository`). Language and Ollama URL settings have persisted correctly across every app relaunch this entire project (Phases 2–6), confirming DataStore persistence already satisfies the "across app restarts" acceptance criterion.
 
 ## Session Log
 *(append one entry per work session)*
@@ -132,3 +137,8 @@
 - Started: Phase 5 — Emergency Alert & Incident History
 - Completed: Room database (`WoundCaseEntity`/`WoundCaseDao`/`FR1Database` singleton) + `WoundCaseRepository`; wired `WoundAssessmentViewModel` to persist exactly one case per completed assessment; `HistoryScreen` now shows real saved cases (severity-colored dot + label + localized timestamp) with a reactive `Flow`-backed list and an empty state; `EmergencyAlertScreen` rebuilt with a big `ACTION_DIAL` button pre-filling 1122 and a simulated "Alert Nearby Medical Professional" confirmation (5–10 minute estimated response, matching the FYP proposal's wording). Rebuilt clean (Room/KSP compiled without issue), reinstalled on `FR1_Test`, and manually verified: the dial intent genuinely opens the system dialer pre-filled with 1122 (confirmed via `dumpsys activity activities`, not just a screenshot guess); the simulated alert confirmation renders correctly; and — the key acceptance criterion — completing a Moderate-severity Wound Assessment produced a real, visible entry in Incident History with the correct severity and timestamp, verified in both English and Urdu (RTL correctly swaps which side the severity/timestamp appear on, no extra code needed for that). No crashes in logcat throughout.
 - Next up: Phase 6 — Settings Finalization
+
+### Session 7 — 2026-07-22
+- Started: Phase 6 — Settings Finalization
+- Completed: Added Ollama URL format validation (inline red error + disables the test/save-adjacent action when invalid) and a "Test Connection" button that reuses Phase 4's `OllamaRepository.checkReachableModel()` against the currently saved URL, showing a spinner then a colored inline result (green + detected model name on success, red "could not reach server" on failure). Language and Ollama URL persistence across app restarts was already working from Phase 1 (DataStore-backed) and got re-confirmed incidentally throughout this session. Rebuilt clean, reinstalled on `FR1_Test`, and manually verified both the invalid-URL error state and the failure-path test result end-to-end with no crashes. Live-mode "Success" path still untested for the same reason as Phase 4 (no Ollama server available in this environment) — same flag applies here.
+- Next up: Phase 7 — Integration Testing & Bug Fixing

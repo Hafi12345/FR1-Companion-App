@@ -19,6 +19,10 @@
     <string name="settings_language_section">Language</string>
     <string name="settings_ollama_section">Ollama Server</string>
     <string name="settings_ollama_url_label">Server address (e.g. http://192.168.1.100:11434)</string>
+    <string name="settings_ollama_url_error">Enter a valid URL, e.g. http://192.168.1.100:11434</string>
+    <string name="settings_test_connection_button">Test Connection</string>
+    <string name="settings_test_connection_success">Connected — model: %1$s</string>
+    <string name="settings_test_connection_failure">Could not reach server</string>
 
     <string name="wound_assessment_disclaimer">This is a simulated assessment for demonstration purposes and does not replace professional medical judgment.</string>
     <string name="wound_assessment_progress">Question %1$d of %2$d</string>
