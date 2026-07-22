@@ -36,16 +36,17 @@
 - [ ] Phase 8 — Polish, APK Build, Demo Rehearsal
 
 ## Known Issues / Blockers
-- No Android emulator (AVD) or physical device currently available in this environment to visually confirm the blank-screen launch — `assembleDebug` succeeds and produces an installable APK, but on-device/emulator launch is unverified. Set up an AVD (or connect a device) before treating Phase 0's "no crash on launch" acceptance criterion as fully verified.
+*(none currently — see Notes & Deviations for the disk-space workaround used to get the emulator running)*
 
 ## Notes & Deviations from Plan
 - The project's AGP version (9.3.0) uses AGP's new "built-in Kotlin" compilation model, which by default rejects KSP's classic `kotlin.sourceSets` DSL usage (needed for Room's annotation processing) with: `Using kotlin.sourceSets DSL to add Kotlin sources is not allowed with built-in Kotlin`. Fixed by setting `android.disallowKotlinSourceSets=false` in `gradle.properties` per AGP's own suggested remedy (https://developer.android.com/r/tools/built-in-kotlin). Revisit if a future AGP/KSP release removes the need for this flag.
 - KSP version pinned to `2.2.10-2.0.2` to match the project's Kotlin version `2.2.10` (verified via Maven Central; `2.2.10-2.0.1` does not exist and fails plugin resolution).
+- Dev machine's C: drive was at 95% capacity (~6GB free) with no cmdline-tools/AVDs installed. Installed `cmdline-tools`, `platforms;android-35`, `system-images;android-35;google_apis;x86_64`, and `emulator`, then created an AVD (`FR1_Test`, Pixel 6 profile, API 35). The API 35 image enforces a hard ~7.2GB minimum userdata-partition floor regardless of configured size, which didn't fit until the user freed disk space (~6GB → ~10GB free). Emulator boots fine now; keep this in mind if disk space gets tight again during later phases (APK installs, Room DB files, etc. all need headroom on the same drive).
 
 ## Session Log
 *(append one entry per work session)*
 
 ### Session 1 — 2026-07-22
 - Started: Phase 0 — Environment & Project Setup
-- Completed: Verified existing AS-generated project skeleton (package `com.fr1.companion`, minSdk 26, Compose). Added Retrofit/OkHttp, Room+KSP, DataStore, CameraX, Coroutines, Navigation Compose to the version catalog and app module. Scaffolded the full `architecture.md` package/resource folder structure. Confirmed `assembleDebug` builds successfully. Initialized git repo and made the initial commit.
+- Completed: Verified existing AS-generated project skeleton (package `com.fr1.companion`, minSdk 26, Compose). Added Retrofit/OkHttp, Room+KSP, DataStore, CameraX, Coroutines, Navigation Compose to the version catalog and app module. Scaffolded the full `architecture.md` package/resource folder structure. Confirmed `assembleDebug` builds successfully. Initialized git repo and made the initial commit. Set up Android SDK cmdline-tools, an API 35 system image, and an AVD (`FR1_Test`); installed the debug APK and confirmed via logcat + screenshot that the app launches with no crash.
 - Next up: Phase 1 — theme, navigation graph, LocaleManager, bilingual strings, Home screen, DataStore setup
