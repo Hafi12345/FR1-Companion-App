@@ -130,4 +130,12 @@
     <string name="fallback_answer_medication">میں ادویات یا خوراک کے بارے میں مشورہ نہیں دے سکتا۔ براہ کرم کسی طبی ماہر یا فارماسسٹ سے رجوع کریں، اور امداد کے انتظار میں بنیادی ابتدائی طبی امداد پر توجہ دیں۔</string>
     <string name="fallback_answer_general">پرسکون رہیں، یقینی بنائیں کہ جگہ محفوظ ہے، اور چیک کریں کہ مریض ہوش میں ہے اور سانس لے رہا ہے۔ آپ اس ایپ میں مکمل زخم کا معائنہ چلا سکتے ہیں یا مرحلہ وار مدد کے لیے علاج کی رہنمائی کی لائبریری دیکھ سکتے ہیں۔</string>
     <string name="fallback_answer_default">میرے پاس اس کا کوئی مخصوص جواب نہیں ہے۔ براہ کرم مرحلہ وار ہدایات کے لیے علاج کی رہنمائی کی لائبریری دیکھیں، یا اگر یقین نہ ہو تو ہنگامی امداد کو کال کریں۔ یہ آف لائن موڈ ہے، اس لیے جوابات عام ابتدائی طبی امداد کے موضوعات تک محدود ہیں۔</string>
+
+    <string name="emergency_call_button">%1$s پر کال کریں</string>
+    <string name="emergency_call_description">پیشہ ورانہ ہنگامی امداد کے لیے کال کرنے کے لیے آپ کے فون کا ڈائلر کھولتا ہے۔</string>
+    <string name="emergency_alert_professional_button">قریبی طبی پیشہ ور کو الرٹ کریں</string>
+    <string name="emergency_alert_confirmation_title">الرٹ بھیج دیا گیا (نقلی)</string>
+    <string name="emergency_alert_confirmation_message">قریبی طبی پیشہ وروں کو مطلع کر دیا گیا ہے۔ متوقع رسپانس وقت: 5 سے 10 منٹ۔</string>
+
+    <string name="history_empty_state">ابھی تک کوئی معائنہ نہیں ہے۔ مکمل شدہ زخم کے معائنے یہاں ظاہر ہوں گے۔</string>
 </resources>

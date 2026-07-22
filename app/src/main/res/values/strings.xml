@@ -130,4 +130,12 @@
     <string name="fallback_answer_medication">I can\'t advise on medications or dosages. Please consult a medical professional or pharmacist, and focus on basic first-aid stabilization while you wait for help.</string>
     <string name="fallback_answer_general">Stay calm, make sure the area is safe, and check if the person is conscious and breathing. You can also run a full Wound Assessment in this app or check the Treatment Guidance library for step-by-step help.</string>
     <string name="fallback_answer_default">I don\'t have a specific answer for that. Please check the Treatment Guidance library for step-by-step instructions, or call emergency services if you\'re unsure. This is offline mode, so responses are limited to common first-aid topics.</string>
+
+    <string name="emergency_call_button">Call %1$s</string>
+    <string name="emergency_call_description">Opens your phone\'s dialer to call for professional emergency help.</string>
+    <string name="emergency_alert_professional_button">Alert Nearby Medical Professional</string>
+    <string name="emergency_alert_confirmation_title">Alert Sent (Simulated)</string>
+    <string name="emergency_alert_confirmation_message">Nearby medical professionals have been notified. Estimated response time: 5–10 minutes.</string>
+
+    <string name="history_empty_state">No assessments yet. Completed Wound Assessments will appear here.</string>
 </resources>
