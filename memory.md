@@ -12,21 +12,29 @@
 ---
 
 ## Current Phase
-`Phase 1 — Foundations: Theme, Navigation, Bilingual Scaffold` *(update this line as phases progress)*
+`Phase 2 — Wound Assessment (Rule Engine + UI)` *(update this line as phases progress)*
 
 ## Files Created
-- `gradle/libs.versions.toml` — added Navigation Compose, Coroutines, Retrofit/OkHttp, Room (+ KSP), DataStore, CameraX version/library entries
+- `gradle/libs.versions.toml` — added Navigation Compose, Coroutines, Retrofit/OkHttp, Room (+ KSP), DataStore, CameraX, Lifecycle ViewModel/Runtime Compose, material-icons-core version/library entries
 - `app/build.gradle.kts` — wired the new dependencies + `ksp` plugin
 - `gradle.properties` — added `android.disallowKotlinSourceSets=false` (see Notes & Deviations)
 - `app/src/main/java/com/fr1/companion/{ui/*,domain/*,data/*,util}/` — package skeleton per `architecture.md`, empty dirs hold `.gitkeep`
 - `app/src/main/res/{values-ur,font}/` — resource dirs per `architecture.md`, empty, hold `.gitkeep`
+- `ui/theme/{Color,Theme,Type}.kt` — rewritten per `design.md` palette/typography (dynamic/system color intentionally disabled)
+- `data/local/datastore/UserPreferencesRepository.kt` — DataStore-backed language + Ollama server URL
+- `util/LocaleManager.kt` — builds a locale-scoped `Context` + RTL check, applied via `CompositionLocalProvider` (no Activity recreation needed)
+- `ui/FR1App.kt` — root composable wiring locale/RTL + theme + nav graph
+- `ui/navigation/{Routes,FR1NavGraph}.kt` — nav graph: splash → language select (first launch only) → home → 6 feature routes
+- `ui/splash/{SplashScreen,SplashViewModel}.kt`, `ui/onboarding/{LanguageSelectScreen,LanguageSelectViewModel}.kt`, `ui/home/HomeScreen.kt`, `ui/settings/{SettingsScreen,SettingsViewModel}.kt` (functional: language toggle + Ollama URL field), `ui/components/{NavCard,PlaceholderScreen}.kt`
+- `ui/{woundassessment,chatbot,guidance,emergency,history}/*Screen.kt` — thin stub screens using `PlaceholderScreen`, real implementations come in their respective phases
+- `res/values/strings.xml` + `res/values-ur/strings.xml` — full EN/UR parity for every Phase 1 string
 
 ## Files In Progress
 *(none yet)*
 
 ## Completed Phases
 - [x] Phase 0 — Environment & Project Setup
-- [ ] Phase 1 — Foundations: Theme, Navigation, Bilingual Scaffold
+- [x] Phase 1 — Foundations: Theme, Navigation, Bilingual Scaffold
 - [ ] Phase 2 — Wound Assessment (Rule Engine + UI)
 - [ ] Phase 3 — Treatment Guidance Library
 - [ ] Phase 4 — Chatbot (Ollama Integration + Fallback)
@@ -42,6 +50,10 @@
 - The project's AGP version (9.3.0) uses AGP's new "built-in Kotlin" compilation model, which by default rejects KSP's classic `kotlin.sourceSets` DSL usage (needed for Room's annotation processing) with: `Using kotlin.sourceSets DSL to add Kotlin sources is not allowed with built-in Kotlin`. Fixed by setting `android.disallowKotlinSourceSets=false` in `gradle.properties` per AGP's own suggested remedy (https://developer.android.com/r/tools/built-in-kotlin). Revisit if a future AGP/KSP release removes the need for this flag.
 - KSP version pinned to `2.2.10-2.0.2` to match the project's Kotlin version `2.2.10` (verified via Maven Central; `2.2.10-2.0.1` does not exist and fails plugin resolution).
 - Dev machine's C: drive was at 95% capacity (~6GB free) with no cmdline-tools/AVDs installed. Installed `cmdline-tools`, `platforms;android-35`, `system-images;android-35;google_apis;x86_64`, and `emulator`, then created an AVD (`FR1_Test`, Pixel 6 profile, API 35). The API 35 image enforces a hard ~7.2GB minimum userdata-partition floor regardless of configured size, which didn't fit until the user freed disk space (~6GB → ~10GB free). Emulator boots fine now; keep this in mind if disk space gets tight again during later phases (APK installs, Room DB files, etc. all need headroom on the same drive).
+- `androidx.lifecycle:*` pinned to `2.9.0` (not the newer `2.11.0`) because `lifecycle-runtime-compose`/`lifecycle-viewmodel-compose` 2.11.0 requires compileSdk 37, but this project compiles against 36.1. Revisit if compileSdk is bumped later.
+- Bilingual language switching is implemented **without** an Activity recreation: `LocaleManager` builds a locale-scoped `Context` and `FR1App` provides it (plus `LocalLayoutDirection`) via `CompositionLocalProvider`, wrapping the whole nav graph. This means every `stringResource()` call re-resolves instantly on language change — verified live on-device (see Session 2). No `androidx.appcompat` dependency needed.
+- Font bundling (Noto Sans / Noto Naskh Urdu) from `design.md` section 3 is deferred — currently using `FontFamily.Default`, which already renders Urdu correctly via Android's built-in Noto fallback. `res/font/` exists but is empty. Revisit during Phase 8 polish if time allows; not a blocker for any acceptance criteria so far.
+- Settings screen is more functional than a Phase 1 "placeholder" strictly implies (real language toggle + Ollama URL field wired to DataStore) — done deliberately since Phase 1's acceptance criteria required a working, testable language switch somewhere in the app. Phase 6 will still add the "test connection" ping button.
 
 ## Session Log
 *(append one entry per work session)*
@@ -50,3 +62,8 @@
 - Started: Phase 0 — Environment & Project Setup
 - Completed: Verified existing AS-generated project skeleton (package `com.fr1.companion`, minSdk 26, Compose). Added Retrofit/OkHttp, Room+KSP, DataStore, CameraX, Coroutines, Navigation Compose to the version catalog and app module. Scaffolded the full `architecture.md` package/resource folder structure. Confirmed `assembleDebug` builds successfully. Initialized git repo and made the initial commit. Set up Android SDK cmdline-tools, an API 35 system image, and an AVD (`FR1_Test`); installed the debug APK and confirmed via logcat + screenshot that the app launches with no crash.
 - Next up: Phase 1 — theme, navigation graph, LocaleManager, bilingual strings, Home screen, DataStore setup
+
+### Session 2 — 2026-07-22
+- Started: Phase 1 — Foundations: Theme, Navigation, Bilingual Scaffold
+- Completed: Built `Color.kt`/`Theme.kt`/`Type.kt` per `design.md`; DataStore-backed `UserPreferencesRepository` (language + Ollama URL); `LocaleManager` for runtime locale/RTL switching without Activity recreation; full nav graph (Splash → Language Select (first launch only) → Home → Wound Assessment/Chatbot/Guidance/Emergency/History/Settings); Settings screen with a real, working language toggle and Ollama URL field; EN/UR string parity for every new string. Verified live on the `FR1_Test` emulator: cold launch → language select → Home → stub screen navigation → Settings → live EN⇄UR switch with correct RTL mirroring (back arrow flips, layout reverses, all strings translate) and no crashes anywhere in the flow.
+- Next up: Phase 2 — Wound Assessment rule engine + guided-question UI

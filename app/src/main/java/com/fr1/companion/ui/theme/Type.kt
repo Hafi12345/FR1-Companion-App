@@ -6,29 +6,49 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-// Set of Material typography styles to start with
+// Scale per design.md section 3 — bigger than a typical consumer app, legible
+// under stress/sunlight. Never go below 13sp anywhere in the app.
+// FontFamily.Default is used until Noto Sans / Noto Naskh Urdu are bundled
+// (see app/src/main/res/font/) — Android's built-in font fallback already
+// renders Urdu via Noto Naskh Urdu, so this is not a blocking gap.
 val Typography = Typography(
-    bodyLarge = TextStyle(
+    headlineLarge = TextStyle( // Screen title
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Bold,
+        fontSize = 28.sp,
+        lineHeight = 34.sp,
+    ),
+    titleLarge = TextStyle( // Section header
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 20.sp,
+        lineHeight = 26.sp,
+    ),
+    bodyLarge = TextStyle( // Body
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Normal,
+        fontSize = 18.sp,
+        lineHeight = 26.sp,
+        letterSpacing = 0.5.sp,
+    ),
+    bodyMedium = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,
         lineHeight = 24.sp,
-        letterSpacing = 0.5.sp
-    )
-    /* Other default text styles to override
-    titleLarge = TextStyle(
+        letterSpacing = 0.5.sp,
+    ),
+    labelLarge = TextStyle( // Button label
+        fontFamily = FontFamily.Default,
+        fontWeight = FontWeight.Bold,
+        fontSize = 16.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.5.sp,
+    ),
+    bodySmall = TextStyle( // Caption / disclaimer
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 22.sp,
-        lineHeight = 28.sp,
-        letterSpacing = 0.sp
+        fontSize = 13.sp,
+        lineHeight = 18.sp,
     ),
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
-    )
-    */
 )

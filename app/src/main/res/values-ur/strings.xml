@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">FR1 Companion</string>
+
+    <string name="language_select_title">زبان منتخب کریں</string>
+    <string name="language_name_english">English</string>
+    <string name="language_name_urdu">اردو</string>
+
+    <string name="home_title">مرکزی صفحہ</string>
+    <string name="feature_wound_assessment">زخم کا معائنہ</string>
+    <string name="feature_chatbot">چیٹ بوٹ</string>
+    <string name="feature_guidance">علاج کی رہنمائی</string>
+    <string name="feature_emergency">ہنگامی الرٹ</string>
+    <string name="feature_history">سابقہ ریکارڈ</string>
+    <string name="feature_settings">ترتیبات</string>
+
+    <string name="placeholder_coming_soon">یہ اسکرین اگلے مرحلے میں مکمل کی جائے گی۔</string>
+    <string name="content_description_back">واپس</string>
+
+    <string name="settings_language_section">زبان</string>
+    <string name="settings_ollama_section">اولاما سرور</string>
+    <string name="settings_ollama_url_label">سرور ایڈریس (مثال: http://192.168.1.100:11434)</string>
+</resources>
