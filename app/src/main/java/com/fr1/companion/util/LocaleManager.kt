@@ -1,7 +1,9 @@
 package com.fr1.companion.util
 
 import android.content.Context
+import android.content.ContextWrapper
 import android.content.res.Configuration
+import android.content.res.Resources
 import android.text.TextUtils
 import android.view.View
 import java.util.Locale
@@ -14,11 +16,27 @@ import java.util.Locale
  */
 object LocaleManager {
 
+    /**
+     * A plain `createConfigurationContext()` result is a standalone Context, not a
+     * `ContextWrapper` chained back to the Activity — anything that unwraps
+     * `LocalContext.current` to find the Activity (e.g. permission/camera launchers
+     * via `LocalActivityResultRegistryOwner`) breaks. Wrapping [base] and only
+     * overriding [getResources] keeps that chain intact while still localizing
+     * `stringResource()`.
+     */
+    private class LocalizedContextWrapper(
+        base: Context,
+        private val localizedResources: Resources,
+    ) : ContextWrapper(base) {
+        override fun getResources(): Resources = localizedResources
+    }
+
     fun localizedContext(base: Context, languageCode: String): Context {
         val locale = Locale.forLanguageTag(languageCode)
         val config = Configuration(base.resources.configuration)
         config.setLocale(locale)
-        return base.createConfigurationContext(config)
+        val localizedResources = base.createConfigurationContext(config).resources
+        return LocalizedContextWrapper(base, localizedResources)
     }
 
     fun isRtl(languageCode: String): Boolean {

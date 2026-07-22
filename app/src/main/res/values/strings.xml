@@ -19,4 +19,93 @@
     <string name="settings_language_section">Language</string>
     <string name="settings_ollama_section">Ollama Server</string>
     <string name="settings_ollama_url_label">Server address (e.g. http://192.168.1.100:11434)</string>
+
+    <string name="wound_assessment_disclaimer">This is a simulated assessment for demonstration purposes and does not replace professional medical judgment.</string>
+    <string name="wound_assessment_progress">Question %1$d of %2$d</string>
+    <string name="question_consciousness">Is the patient conscious and responsive?</string>
+    <string name="question_breathing">Is the patient having difficulty breathing?</string>
+    <string name="question_bleeding">How much bleeding is there?</string>
+    <string name="question_bone_visible">Can you see bone, muscle, or an organ in the wound?</string>
+    <string name="question_wound_size">Is the affected area larger than the patient\'s palm?</string>
+    <string name="answer_yes">Yes</string>
+    <string name="answer_no">No</string>
+    <string name="bleeding_none">None</string>
+    <string name="bleeding_light">Light — slows or stops with pressure</string>
+    <string name="bleeding_heavy">Heavy — won\'t stop or spurting</string>
+
+    <string name="attach_photo">Attach Photo (optional)</string>
+    <string name="photo_attached">Photo attached</string>
+    <string name="retake_photo">Retake Photo</string>
+    <string name="skip_photo">Skip</string>
+    <string name="camera_permission_denied">Camera permission is needed to attach a photo.</string>
+    <string name="camera_grant_permission">Allow Camera Access</string>
+    <string name="camera_capture_button">Capture</string>
+    <string name="camera_cancel_button">Cancel</string>
+
+    <string name="severity_result_title">Assessment Result</string>
+    <string name="severity_minor_label">Minor</string>
+    <string name="severity_moderate_label">Moderate</string>
+    <string name="severity_severe_label">Severe</string>
+    <string name="severity_minor_description">This looks self-manageable with basic first-aid guidance.</string>
+    <string name="severity_moderate_description">Treat using first-aid guidance and monitor closely.</string>
+    <string name="severity_severe_description">This needs immediate professional help. Please proceed to Emergency Alert.</string>
+    <string name="action_view_guidance">View Treatment Guidance</string>
+    <string name="action_go_to_emergency">Go to Emergency Alert</string>
+    <string name="action_back_to_home">Back to Home</string>
+
+    <string name="guidance_disclaimer">This is basic first-aid guidance for demonstration purposes only. It does not replace professional medical training or emergency services.</string>
+
+    <string name="guidance_category_severe_bleeding">Severe Bleeding Control</string>
+    <string name="guidance_severe_bleeding_step_1">Call for emergency help immediately, or have someone else call.</string>
+    <string name="guidance_severe_bleeding_step_2">Apply firm, direct pressure on the wound using a clean cloth or bandage.</string>
+    <string name="guidance_severe_bleeding_step_3">If the cloth soaks through, do not remove it — add more layers on top and keep pressing.</string>
+    <string name="guidance_severe_bleeding_step_4">Keep the injured area raised above heart level if possible.</string>
+    <string name="guidance_severe_bleeding_step_5">Keep the person still, warm, and calm while waiting for help.</string>
+    <string name="guidance_severe_bleeding_step_6">Do not apply a tourniquet unless trained and bleeding cannot be controlled by pressure.</string>
+
+    <string name="guidance_category_fracture">Fractures &amp; Immobilization</string>
+    <string name="guidance_fracture_step_1">Do not try to straighten or push the limb back into place.</string>
+    <string name="guidance_fracture_step_2">Keep the injured area as still as possible.</string>
+    <string name="guidance_fracture_step_3">If available, support the limb above and below the injury with a splint (a rolled towel, magazine, or board).</string>
+    <string name="guidance_fracture_step_4">Pad around the splint before securing it loosely — never tie it tight enough to cut off circulation.</string>
+    <string name="guidance_fracture_step_5">Check fingers or toes for color and warmth after splinting.</string>
+    <string name="guidance_fracture_step_6">Get the person to professional medical care as soon as possible.</string>
+
+    <string name="guidance_category_burns">Burns</string>
+    <string name="guidance_burns_step_1">Move the person away from the source of the burn.</string>
+    <string name="guidance_burns_step_2">Cool the burn under cool (not ice-cold) running water for at least 10–20 minutes.</string>
+    <string name="guidance_burns_step_3">Remove tight clothing or jewelry near the burn before it swells, but do not remove anything stuck to the skin.</string>
+    <string name="guidance_burns_step_4">Cover loosely with a clean, non-fluffy cloth or cling film — do not apply ice, butter, or ointments.</string>
+    <string name="guidance_burns_step_5">Do not pop any blisters.</string>
+    <string name="guidance_burns_step_6">Seek medical help for burns larger than the palm, on the face/hands/joints, or if the skin looks white or charred.</string>
+
+    <string name="guidance_category_shock">Shock</string>
+    <string name="guidance_shock_step_1">Call for emergency help immediately.</string>
+    <string name="guidance_shock_step_2">Lay the person down and raise their legs about 12 inches, unless a leg or spine injury is suspected.</string>
+    <string name="guidance_shock_step_3">Keep them warm with a blanket or coat.</string>
+    <string name="guidance_shock_step_4">Loosen tight clothing around the neck, chest, and waist.</string>
+    <string name="guidance_shock_step_5">Do not give them anything to eat or drink.</string>
+    <string name="guidance_shock_step_6">Keep talking calmly to them and monitor breathing until help arrives.</string>
+
+    <string name="guidance_category_choking">Choking</string>
+    <string name="guidance_choking_step_1">Ask \"Are you choking?\" — if they can cough or speak, encourage them to keep coughing.</string>
+    <string name="guidance_choking_step_2">If they cannot breathe, speak, or cough, stand behind them and give up to 5 sharp back blows between the shoulder blades with the heel of your hand.</string>
+    <string name="guidance_choking_step_3">If back blows don\'t clear it, give up to 5 abdominal thrusts: stand behind them, fist above the navel, pull sharply inward and upward.</string>
+    <string name="guidance_choking_step_4">Alternate 5 back blows and 5 abdominal thrusts until the object clears or they become unresponsive.</string>
+    <string name="guidance_choking_step_5">If the person becomes unresponsive, lower them to the ground, call emergency services immediately, and begin CPR guidance.</string>
+
+    <string name="guidance_category_positioning">Positioning (Recovery Position)</string>
+    <string name="guidance_positioning_step_1">If the person is unconscious but breathing normally, place them in the recovery position on their side.</string>
+    <string name="guidance_positioning_step_2">Tilt their head back slightly to keep the airway open.</string>
+    <string name="guidance_positioning_step_3">Bend the top leg at the knee to stabilize the body.</string>
+    <string name="guidance_positioning_step_4">Keep monitoring their breathing continuously until help arrives.</string>
+    <string name="guidance_positioning_step_5">If breathing stops at any point, begin CPR guidance immediately.</string>
+
+    <string name="guidance_category_cpr">CPR Overview</string>
+    <string name="guidance_cpr_step_1">Check responsiveness — tap and shout. If unresponsive and not breathing normally, call emergency services immediately.</string>
+    <string name="guidance_cpr_step_2">Place the person on their back on a firm, flat surface.</string>
+    <string name="guidance_cpr_step_3">Kneel beside them, place the heel of one hand on the center of the chest, other hand on top, fingers interlocked.</string>
+    <string name="guidance_cpr_step_4">Push hard and fast — about 5–6 cm deep, at a rate of 100–120 compressions per minute — letting the chest fully rise between compressions.</string>
+    <string name="guidance_cpr_step_5">Continue compressions until emergency help arrives or the person starts breathing normally. Only add rescue breaths if trained to do so.</string>
+    <string name="guidance_cpr_step_6">This is a basic overview only — professional CPR/first-aid training is strongly recommended.</string>
 </resources>

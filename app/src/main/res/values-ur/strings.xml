@@ -19,4 +19,93 @@
     <string name="settings_language_section">زبان</string>
     <string name="settings_ollama_section">اولاما سرور</string>
     <string name="settings_ollama_url_label">سرور ایڈریس (مثال: http://192.168.1.100:11434)</string>
+
+    <string name="wound_assessment_disclaimer">یہ مظاہرے کے مقصد کے لیے ایک نقلی جائزہ ہے اور پیشہ ور طبی رائے کا متبادل نہیں ہے۔</string>
+    <string name="wound_assessment_progress">سوال %1$d از %2$d</string>
+    <string name="question_consciousness">کیا مریض ہوش میں اور رد عمل دے رہا ہے؟</string>
+    <string name="question_breathing">کیا مریض کو سانس لینے میں دشواری ہو رہی ہے؟</string>
+    <string name="question_bleeding">خون بہنے کی مقدار کتنی ہے؟</string>
+    <string name="question_bone_visible">کیا زخم میں ہڈی، گوشت یا کوئی عضو نظر آ رہا ہے؟</string>
+    <string name="question_wound_size">کیا متاثرہ حصہ مریض کی ہتھیلی سے بڑا ہے؟</string>
+    <string name="answer_yes">ہاں</string>
+    <string name="answer_no">نہیں</string>
+    <string name="bleeding_none">کوئی نہیں</string>
+    <string name="bleeding_light">ہلکا — دباؤ سے کم یا بند ہو جاتا ہے</string>
+    <string name="bleeding_heavy">شدید — بند نہیں ہوتا یا ابل کر نکل رہا ہے</string>
+
+    <string name="attach_photo">تصویر منسلک کریں (اختیاری)</string>
+    <string name="photo_attached">تصویر منسلک ہو گئی</string>
+    <string name="retake_photo">دوبارہ تصویر لیں</string>
+    <string name="skip_photo">چھوڑ دیں</string>
+    <string name="camera_permission_denied">تصویر منسلک کرنے کے لیے کیمرے کی اجازت درکار ہے۔</string>
+    <string name="camera_grant_permission">کیمرے کی اجازت دیں</string>
+    <string name="camera_capture_button">تصویر لیں</string>
+    <string name="camera_cancel_button">منسوخ کریں</string>
+
+    <string name="severity_result_title">جائزے کا نتیجہ</string>
+    <string name="severity_minor_label">معمولی</string>
+    <string name="severity_moderate_label">درمیانہ</string>
+    <string name="severity_severe_label">شدید</string>
+    <string name="severity_minor_description">یہ بنیادی ابتدائی طبی امداد کی رہنمائی سے خود سنبھالا جا سکتا ہے۔</string>
+    <string name="severity_moderate_description">ابتدائی طبی امداد کی رہنمائی کے مطابق علاج کریں اور بغور نگرانی کریں۔</string>
+    <string name="severity_severe_description">اس کے لیے فوری پیشہ ورانہ مدد درکار ہے۔ براہ کرم ہنگامی الرٹ پر جائیں۔</string>
+    <string name="action_view_guidance">علاج کی رہنمائی دیکھیں</string>
+    <string name="action_go_to_emergency">ہنگامی الرٹ پر جائیں</string>
+    <string name="action_back_to_home">مرکزی صفحہ پر واپس جائیں</string>
+
+    <string name="guidance_disclaimer">یہ صرف مظاہرے کے مقصد کے لیے بنیادی ابتدائی طبی امداد کی رہنمائی ہے۔ یہ پیشہ ورانہ طبی تربیت یا ہنگامی خدمات کا متبادل نہیں ہے۔</string>
+
+    <string name="guidance_category_severe_bleeding">شدید خون بہنے پر قابو</string>
+    <string name="guidance_severe_bleeding_step_1">فوری طور پر ہنگامی امداد کو کال کریں یا کسی اور سے کال کروائیں۔</string>
+    <string name="guidance_severe_bleeding_step_2">صاف کپڑے یا پٹی سے زخم پر مضبوطی سے براہ راست دباؤ ڈالیں۔</string>
+    <string name="guidance_severe_bleeding_step_3">اگر کپڑا خون سے بھیگ جائے تو اسے نہ ہٹائیں — اوپر مزید تہیں لگا کر دباؤ جاری رکھیں۔</string>
+    <string name="guidance_severe_bleeding_step_4">اگر ممکن ہو تو زخمی حصے کو دل کی سطح سے اونچا رکھیں۔</string>
+    <string name="guidance_severe_bleeding_step_5">مریض کو ساکت، گرم اور پرسکون رکھیں جب تک امداد نہ پہنچے۔</string>
+    <string name="guidance_severe_bleeding_step_6">جب تک تربیت یافتہ نہ ہوں اور دباؤ سے خون نہ رک رہا ہو، ٹورنیکیٹ استعمال نہ کریں۔</string>
+
+    <string name="guidance_category_fracture">فریکچر اور حرکت بندی</string>
+    <string name="guidance_fracture_step_1">متاثرہ عضو کو سیدھا کرنے یا زبردستی واپس جگہ پر لانے کی کوشش نہ کریں۔</string>
+    <string name="guidance_fracture_step_2">متاثرہ حصے کو زیادہ سے زیادہ ساکت رکھیں۔</string>
+    <string name="guidance_fracture_step_3">اگر دستیاب ہو تو زخم کے اوپر اور نیچے سے سپلنٹ (لپٹا ہوا تولیہ، میگزین یا تختی) سے سہارا دیں۔</string>
+    <string name="guidance_fracture_step_4">سپلنٹ باندھنے سے پہلے اس کے گرد گدی لگائیں اور اسے ڈھیلا باندھیں — اتنا تنگ کبھی نہ باندھیں کہ خون کی روانی رک جائے۔</string>
+    <string name="guidance_fracture_step_5">سپلنٹ لگانے کے بعد انگلیوں کا رنگ اور گرمی چیک کریں۔</string>
+    <string name="guidance_fracture_step_6">جلد از جلد مریض کو پیشہ ور طبی امداد تک پہنچائیں۔</string>
+
+    <string name="guidance_category_burns">جلنا</string>
+    <string name="guidance_burns_step_1">مریض کو جلنے کے ذریعہ سے دور لے جائیں۔</string>
+    <string name="guidance_burns_step_2">جلی ہوئی جگہ کو کم از کم 10 سے 20 منٹ تک ٹھنڈے (برف جیسے ٹھنڈے نہیں) بہتے پانی کے نیچے رکھیں۔</string>
+    <string name="guidance_burns_step_3">سوجن سے پہلے جلی ہوئی جگہ کے قریب تنگ کپڑے یا زیورات اتار دیں، لیکن جو چیز جلد سے چپک گئی ہو اسے نہ ہٹائیں۔</string>
+    <string name="guidance_burns_step_4">زخم کو صاف، غیر روئیں دار کپڑے یا کلنگ فلم سے ڈھیلا ڈھانپ دیں — برف، مکھن یا کوئی مرہم نہ لگائیں۔</string>
+    <string name="guidance_burns_step_5">کسی بھی چھالے کو نہ پھوڑیں۔</string>
+    <string name="guidance_burns_step_6">اگر جلن ہتھیلی سے بڑی ہو، چہرے، ہاتھوں یا جوڑوں پر ہو، یا جلد سفید یا جھلسی ہوئی نظر آئے تو فوری طبی امداد حاصل کریں۔</string>
+
+    <string name="guidance_category_shock">شاک (صدمہ)</string>
+    <string name="guidance_shock_step_1">فوری طور پر ہنگامی امداد کو کال کریں۔</string>
+    <string name="guidance_shock_step_2">مریض کو لٹا دیں اور اگر ٹانگ یا ریڑھ کی ہڈی کی چوٹ کا شبہ نہ ہو تو اس کی ٹانگیں تقریباً 12 انچ اونچی کریں۔</string>
+    <string name="guidance_shock_step_3">انہیں کمبل یا کوٹ سے گرم رکھیں۔</string>
+    <string name="guidance_shock_step_4">گردن، سینے اور کمر کے گرد تنگ کپڑے ڈھیلے کریں۔</string>
+    <string name="guidance_shock_step_5">انہیں کھانے یا پینے کے لیے کچھ نہ دیں۔</string>
+    <string name="guidance_shock_step_6">امداد پہنچنے تک ان سے پرسکون انداز میں بات کرتے رہیں اور سانس پر نظر رکھیں۔</string>
+
+    <string name="guidance_category_choking">دم گھٹنا</string>
+    <string name="guidance_choking_step_1">پوچھیں \"کیا آپ کا دم گھٹ رہا ہے؟\" — اگر وہ کھانس یا بول سکتے ہیں تو انہیں کھانستے رہنے کی حوصلہ افزائی کریں۔</string>
+    <string name="guidance_choking_step_2">اگر وہ سانس، بات یا کھانسی نہیں کر پا رہے تو ان کے پیچھے کھڑے ہو کر ہتھیلی کی ایڑی سے کندھوں کے درمیان 5 تک تیز تھپکیاں دیں۔</string>
+    <string name="guidance_choking_step_3">اگر پیٹھ پر تھپکیاں کارآمد نہ ہوں تو 5 تک پیٹ پر دھکے دیں: پیچھے کھڑے ہو کر ناف کے اوپر مٹھی رکھیں اور تیزی سے اندر اور اوپر کی طرف کھینچیں۔</string>
+    <string name="guidance_choking_step_4">جب تک رکاوٹ دور نہ ہو یا مریض بے ہوش نہ ہو جائے، 5 پیٹھ کی تھپکیوں اور 5 پیٹ کے دھکوں کو باری باری دہرائیں۔</string>
+    <string name="guidance_choking_step_5">اگر مریض بے ہوش ہو جائے تو انہیں آہستہ سے زمین پر لٹائیں، فوری طور پر ہنگامی امداد کو کال کریں، اور سی پی آر کی رہنمائی شروع کریں۔</string>
+
+    <string name="guidance_category_positioning">پوزیشننگ (بازیابی کی پوزیشن)</string>
+    <string name="guidance_positioning_step_1">اگر مریض بے ہوش ہو مگر معمول کے مطابق سانس لے رہا ہو تو اسے پہلو کے بل بازیابی کی پوزیشن میں لٹائیں۔</string>
+    <string name="guidance_positioning_step_2">ہوا کی نالی کھلی رکھنے کے لیے ان کا سر ہلکا سا پیچھے جھکائیں۔</string>
+    <string name="guidance_positioning_step_3">جسم کو مستحکم رکھنے کے لیے اوپر والی ٹانگ کو گھٹنے سے موڑیں۔</string>
+    <string name="guidance_positioning_step_4">امداد پہنچنے تک ان کی سانس پر مسلسل نظر رکھیں۔</string>
+    <string name="guidance_positioning_step_5">اگر کسی بھی وقت سانس رک جائے تو فوری طور پر سی پی آر کی رہنمائی شروع کریں۔</string>
+
+    <string name="guidance_category_cpr">سی پی آر کا خلاصہ</string>
+    <string name="guidance_cpr_step_1">ردعمل چیک کریں — تھپکائیں اور آواز دیں۔ اگر مریض بے ہوش ہو اور معمول کے مطابق سانس نہ لے رہا ہو تو فوری طور پر ہنگامی امداد کو کال کریں۔</string>
+    <string name="guidance_cpr_step_2">مریض کو کسی سخت اور ہموار سطح پر پیٹھ کے بل لٹائیں۔</string>
+    <string name="guidance_cpr_step_3">ان کے پہلو میں گھٹنے ٹیک کر ایک ہاتھ کی ایڑی سینے کے وسط پر رکھیں، دوسرا ہاتھ اس کے اوپر رکھیں اور انگلیاں آپس میں ملا لیں۔</string>
+    <string name="guidance_cpr_step_4">زور سے اور تیزی سے دبائیں — تقریباً 5 سے 6 سینٹی میٹر گہرائی تک، 100 سے 120 دباؤ فی منٹ کی رفتار سے — ہر دباؤ کے بعد سینے کو مکمل طور پر اوپر اٹھنے دیں۔</string>
+    <string name="guidance_cpr_step_5">ہنگامی امداد پہنچنے یا مریض کے معمول کے مطابق سانس لینا شروع کرنے تک دباؤ جاری رکھیں۔ صرف اسی صورت میں مصنوعی سانس دیں اگر آپ کو اس کی تربیت حاصل ہو۔</string>
+    <string name="guidance_cpr_step_6">یہ صرف ایک بنیادی خلاصہ ہے۔ پیشہ ورانہ سی پی آر اور ابتدائی طبی امداد کی تربیت کی سختی سے سفارش کی جاتی ہے۔</string>
 </resources>
