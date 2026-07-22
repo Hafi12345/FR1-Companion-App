@@ -12,18 +12,20 @@
 ---
 
 ## Current Phase
-`Phase 0 — Environment & Project Setup` *(update this line as phases progress)*
+`Phase 1 — Foundations: Theme, Navigation, Bilingual Scaffold` *(update this line as phases progress)*
 
 ## Files Created
-*(none yet — populate as files are added, one line each, e.g.:)*
-- `app/build.gradle.kts` — initial dependencies configured
+- `gradle/libs.versions.toml` — added Navigation Compose, Coroutines, Retrofit/OkHttp, Room (+ KSP), DataStore, CameraX version/library entries
+- `app/build.gradle.kts` — wired the new dependencies + `ksp` plugin
+- `gradle.properties` — added `android.disallowKotlinSourceSets=false` (see Notes & Deviations)
+- `app/src/main/java/com/fr1/companion/{ui/*,domain/*,data/*,util}/` — package skeleton per `architecture.md`, empty dirs hold `.gitkeep`
+- `app/src/main/res/{values-ur,font}/` — resource dirs per `architecture.md`, empty, hold `.gitkeep`
 
 ## Files In Progress
 *(none yet)*
 
 ## Completed Phases
-*(none yet — check off from phases.md as completed, e.g.:)*
-- [ ] Phase 0 — Environment & Project Setup
+- [x] Phase 0 — Environment & Project Setup
 - [ ] Phase 1 — Foundations: Theme, Navigation, Bilingual Scaffold
 - [ ] Phase 2 — Wound Assessment (Rule Engine + UI)
 - [ ] Phase 3 — Treatment Guidance Library
@@ -34,15 +36,16 @@
 - [ ] Phase 8 — Polish, APK Build, Demo Rehearsal
 
 ## Known Issues / Blockers
-*(none yet)*
+- No Android emulator (AVD) or physical device currently available in this environment to visually confirm the blank-screen launch — `assembleDebug` succeeds and produces an installable APK, but on-device/emulator launch is unverified. Set up an AVD (or connect a device) before treating Phase 0's "no crash on launch" acceptance criterion as fully verified.
 
 ## Notes & Deviations from Plan
-*(none yet — log anything that diverged from prd.md / architecture.md / phases.md and why)*
+- The project's AGP version (9.3.0) uses AGP's new "built-in Kotlin" compilation model, which by default rejects KSP's classic `kotlin.sourceSets` DSL usage (needed for Room's annotation processing) with: `Using kotlin.sourceSets DSL to add Kotlin sources is not allowed with built-in Kotlin`. Fixed by setting `android.disallowKotlinSourceSets=false` in `gradle.properties` per AGP's own suggested remedy (https://developer.android.com/r/tools/built-in-kotlin). Revisit if a future AGP/KSP release removes the need for this flag.
+- KSP version pinned to `2.2.10-2.0.2` to match the project's Kotlin version `2.2.10` (verified via Maven Central; `2.2.10-2.0.1` does not exist and fails plugin resolution).
 
 ## Session Log
 *(append one entry per work session)*
 
-### Session 1 — [DATE/TIME]
-- Started: —
-- Completed: —
-- Next up: Phase 0 setup
+### Session 1 — 2026-07-22
+- Started: Phase 0 — Environment & Project Setup
+- Completed: Verified existing AS-generated project skeleton (package `com.fr1.companion`, minSdk 26, Compose). Added Retrofit/OkHttp, Room+KSP, DataStore, CameraX, Coroutines, Navigation Compose to the version catalog and app module. Scaffolded the full `architecture.md` package/resource folder structure. Confirmed `assembleDebug` builds successfully. Initialized git repo and made the initial commit.
+- Next up: Phase 1 — theme, navigation graph, LocaleManager, bilingual strings, Home screen, DataStore setup
