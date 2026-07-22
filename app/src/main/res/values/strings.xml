@@ -38,9 +38,7 @@
     <string name="bleeding_heavy">Heavy — won\'t stop or spurting</string>
 
     <string name="attach_photo">Attach Photo (optional)</string>
-    <string name="photo_attached">Photo attached</string>
     <string name="retake_photo">Retake Photo</string>
-    <string name="skip_photo">Skip</string>
     <string name="camera_permission_denied">Camera permission is needed to attach a photo.</string>
     <string name="camera_grant_permission">Allow Camera Access</string>
     <string name="camera_capture_button">Capture</string>

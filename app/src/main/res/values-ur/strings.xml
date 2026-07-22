@@ -38,9 +38,7 @@
     <string name="bleeding_heavy">شدید — بند نہیں ہوتا یا ابل کر نکل رہا ہے</string>
 
     <string name="attach_photo">تصویر منسلک کریں (اختیاری)</string>
-    <string name="photo_attached">تصویر منسلک ہو گئی</string>
     <string name="retake_photo">دوبارہ تصویر لیں</string>
-    <string name="skip_photo">چھوڑ دیں</string>
     <string name="camera_permission_denied">تصویر منسلک کرنے کے لیے کیمرے کی اجازت درکار ہے۔</string>
     <string name="camera_grant_permission">کیمرے کی اجازت دیں</string>
     <string name="camera_capture_button">تصویر لیں</string>

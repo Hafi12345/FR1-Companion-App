@@ -12,7 +12,7 @@
 ---
 
 ## Current Phase
-`Phase 7 — Integration Testing & Bug Fixing` *(update this line as phases progress)*
+`Phase 8 — Polish, APK Build, Demo Rehearsal` *(update this line as phases progress)*
 
 ## Files Created
 - `ui/settings/SettingsViewModel.kt` (extended) — added `ConnectionTestState` sealed interface (Idle/Testing/Success(modelName)/Failure), `isValidOllamaUrl()` (top-level regex validator: `^https?://[^\s:/]+(:\d+)?/?$`), and `testConnection()` which reuses `OllamaRepository.checkReachableModel()` (same repo Phase 4 built) against whatever URL is currently saved
@@ -75,7 +75,7 @@
 - [x] Phase 4 — Chatbot (Ollama Integration + Fallback)
 - [x] Phase 5 — Emergency Alert & Incident History
 - [x] Phase 6 — Settings Finalization
-- [ ] Phase 7 — Integration Testing & Bug Fixing
+- [x] Phase 7 — Integration Testing & Bug Fixing
 - [ ] Phase 8 — Polish, APK Build, Demo Rehearsal
 
 ## Known Issues / Blockers
@@ -104,6 +104,8 @@
 - Verified in Urdu too: History's severity dot + label and the timestamp both correctly swap sides under RTL (label+dot move to the right, date stays left) with no code branching needed — it falls out of `Row`'s default start/end semantics once `LocalLayoutDirection` is RTL, same mechanism as everywhere else in the app.
 - Settings' "Test Connection" reuses the exact same `OllamaRepository.checkReachableModel()` that the chatbot's reachability ping uses — no separate test-connection code path to keep in sync. Deliberately tests whatever URL is currently saved to DataStore (not just the in-memory text field value), so what gets tested matches what the chatbot will actually use.
 - Manually verified: an invalid URL (missing/garbled scheme) correctly shows the red-bordered field + localized error text and disables "Test Connection"; a valid but unreachable URL enables the button, runs a real network attempt, and correctly resolves to "Could not reach server" with no crash or hang (bounded by the same 2.5s timeout from Phase 4's `OllamaRepository`). Language and Ollama URL settings have persisted correctly across every app relaunch this entire project (Phases 2–6), confirming DataStore persistence already satisfies the "across app restarts" acceptance criterion.
+- Two dead string resources (`photo_attached`, `skip_photo`) survived from early Phase 2 planning where the camera flow was going to have a "Skip" action — the shipped UI only ever uses `attach_photo`/`retake_photo` (no separate skip button) and shows the attached state via the button label flipping, not a status string. Removed from both `values/strings.xml` and `values-ur/strings.xml` during Phase 7. If you add a genuine "skip photo" affordance later, it needs a fresh string pair, not a revival of these — they were never wired to anything.
+- The Chatbot's greeting bubble has a brief (sub-second) empty window right after `ChatScreen` first composes, before the "Checking connection…" status settles into its greeting + badge state — both the greeting text and the reachability check are async (`currentLanguage()` reads DataStore via a suspend call). This is expected, not a bug: it resolves on its own well within a second and never leaves the user looking at a broken/frozen screen. Don't "fix" this by making the greeting synchronous — it needs the async language read to be correctly localized (see the `LocaleManager.localizedContext()` note above).
 
 ## Session Log
 *(append one entry per work session)*
@@ -142,3 +144,8 @@
 - Started: Phase 6 — Settings Finalization
 - Completed: Added Ollama URL format validation (inline red error + disables the test/save-adjacent action when invalid) and a "Test Connection" button that reuses Phase 4's `OllamaRepository.checkReachableModel()` against the currently saved URL, showing a spinner then a colored inline result (green + detected model name on success, red "could not reach server" on failure). Language and Ollama URL persistence across app restarts was already working from Phase 1 (DataStore-backed) and got re-confirmed incidentally throughout this session. Rebuilt clean, reinstalled on `FR1_Test`, and manually verified both the invalid-URL error state and the failure-path test result end-to-end with no crashes. Live-mode "Success" path still untested for the same reason as Phase 4 (no Ollama server available in this environment) — same flag applies here.
 - Next up: Phase 7 — Integration Testing & Bug Fixing
+
+### Session 8 — 2026-07-22
+- Started: Phase 7 — Integration Testing & Bug Fixing
+- Completed: Did a genuine fresh-install pass (`adb uninstall` + reinstall, not just relaunch) to exercise paths the previous phase-by-phase testing hadn't hit yet: first-launch Language Select screen, the camera permission request UI on a truly ungranted permission (tested both "Cancel" — returns cleanly to Wound Assessment with no crash — and confirmed "Allow" still works from earlier phases), a clean Minor-severity Wound Assessment (all safe answers) correctly falling back to the general Guidance list rather than a deep-linked category, and History correctly showing that single fresh case. Found and removed two dead string resources (`photo_attached`, `skip_photo`) left over from early Phase 2 planning that were never referenced in code — verified via a full unused-string sweep across every `R.string.*` reference, nothing else was orphaned. Re-verified Chatbot and Emergency Alert for regressions after the Phase 6 Settings changes — none found. No crashes anywhere in this session's logcat; the only error-level log line was a benign system `FrameTracker` IME-animation timeout, not app-related.
+- Next up: Phase 8 — Polish, APK Build, Demo Rehearsal
